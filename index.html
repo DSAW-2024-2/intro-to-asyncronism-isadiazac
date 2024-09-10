@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="styles.css" />
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>PokeSite</title>
+  </head>
+  <body>
+    <div class="menu">
+      <div>
+        <div class="title">
+          <a href="#"
+            ><img class="pokedex" src="./Pokédex_logo.png" alt="Pokedex"
+          /></a>
+        </div>
+      </div>
+      <div>
+        <select id="languageSelector" onchange="changeLanguage()">
+          <option value="en" selected>English</option>
+          <option value="de">German</option>
+        </select>
+      </div>
+      <div>
+        <input
+          type="text"
+          id="pokemonSearch"
+          placeholder="Search Pokémon by name or ID..."
+        />
+        <button onclick="getPokemon()">Search</button>
+      </div>
+    </div>
+    <main class="container">
+      <div id="pokemonCards" class="card-container"></div>
+    </main>
+    <footer class="Footer"></footer>
+    <script src="index.js"></script>
+  </body>
+</html>

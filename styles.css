@@ -1,0 +1,159 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: rgb(235, 235, 235);
+  min-height: 100vh;
+}
+.menu {
+  background-color: rgb(0, 0, 0);
+  height: 150px;
+  padding-left: 50px;
+  padding-top: 30px;
+  display: flex;
+  gap: 50px;
+}
+.pokedex {
+  height: 70%;
+  width: 70%;
+}
+.container {
+  background-color: white;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+a {
+  position: relative;
+}
+a:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: 5px;
+  width: 300px;
+  background: linear-gradient(
+    to right,
+    #fd004c,
+    #fe9000,
+    #fff020,
+    #3edf4b,
+    #3363ff,
+    #b102b7
+  );
+  background-size: 200% 100%;
+
+  transition: 1.5s;
+}
+a:hover::before {
+  background-position: 100% 0;
+}
+
+.Footer {
+  background-color: rgb(253, 244, 235);
+  height: 300px;
+  width: 100%;
+  margin: 0 auto;
+  clear: both;
+  position: relative;
+  bottom: 0;
+}
+
+.card {
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  width: 200px;
+}
+
+.card h2 {
+  font-weight: bold;
+  margin-top: 0;
+}
+
+.card p {
+  font-size: 16px;
+  color: #666;
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.card li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.card li:last-child {
+  border-bottom: none;
+}
+
+h1 {
+  color: #333;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.pokemon-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  padding: 20px;
+  text-align: center;
+}
+
+.pokemon-card img {
+  width: 100px;
+  height: 100px;
+}
+
+.pokemon-card h2 {
+  font-size: 1.5em;
+  color: #333;
+}
+
+.pokemon-card p {
+  font-size: 1em;
+  color: #777;
+}
+
+.pokemon-abilities,
+.pokemon-encounters {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.pokemon-abilities h3,
+.pokemon-encounters h3 {
+  margin: 10px 0 5px;
+}
+
+.pokemon-abilities ul,
+.pokemon-encounters ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.pokemon-abilities li,
+.pokemon-encounters li {
+  margin-bottom: 5px;
+}
