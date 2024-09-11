@@ -7,21 +7,26 @@ body {
   min-height: 100vh;
 }
 .menu {
-  background-color: rgb(246, 231, 242);
+  background-color: rgb(255, 255, 255);
   height: 150px;
   padding-left: 50px;
   padding-top: 30px;
   display: flex;
-  gap: 50px;
+  gap: 15px;
   width: 100%;
 }
+.title {
+  width: 300px;
+  padding-right: 20px;
+}
+
 .pokedex {
   height: 70%;
   width: 70%;
   padding-bottom: 20px;
 }
 .container {
-  background-color: white;
+  background-image: url("./Background.png");
   width: 100%;
   height: auto;
   margin: 0 auto;
@@ -32,6 +37,10 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   padding: 20px;
+}
+.bg {
+  width: 100%;
+  height: 100%;
 }
 a {
   position: relative;
@@ -149,7 +158,6 @@ h1 {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 200px;
   padding: 20px;
   text-align: center;
 }
@@ -197,4 +205,7 @@ h1 {
 .pokemon-abilities li,
 .pokemon-encounters li {
   margin-bottom: 5px;
+}
+
+.home {
 }

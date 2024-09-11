@@ -1,24 +1,39 @@
 async function fetchPokemons() {
   try {
-    const response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon?language=${selectedLanguage}`
-    );
-    const dataPokemon = await response.json();
-    const pokemonList = dataPokemon.results;
-
+    const url = `https://pokeapi.co/api/v2/pokemon?language=${selectedLanguage}`;
+    const pokemonData = await fetchUrl(url);
+    const pokemonList = pokemonData.results;
     const pokemonDetails = await Promise.all(
       pokemonList.map((pokemon) => fetch(pokemon.url))
     );
-
-    const pokemonData = await Promise.all(
+    const pokemonDataArray = await Promise.all(
       pokemonDetails.map((response) => response.json())
     );
 
-    return pokemonData;
+    let nextPageUrl = pokemonData.next;
+    while (nextPageUrl) {
+      const nextPageData = await fetchUrl(nextPageUrl);
+      pokemonList.push(...nextPageData.results);
+      nextPageUrl = nextPageData.next;
+    }
+
+    const allPokemonDetails = await Promise.all(
+      pokemonList.map((pokemon) => fetch(pokemon.url))
+    );
+    const allPokemonData = await Promise.all(
+      allPokemonDetails.map((response) => response.json())
+    );
+
+    return allPokemonData;
   } catch (error) {
     console.error("There was an error fetching the Pokémon data:", error);
     return [];
   }
+}
+
+async function fetchUrl(url) {
+  const response = await fetch(url);
+  return response.json();
 }
 
 async function renderData() {
@@ -202,3 +217,5 @@ async function displayEncounters(pokemonId) {
     console.error("Error fetching encounter data:", error);
   }
 }
+let btncard;
+btncard.addEventListener("click", () => {});
