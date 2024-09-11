@@ -1,16 +1,15 @@
 async function fetchPokemons() {
   try {
-    // Fetch a list of Pokémon (limit=20 by default)
-    const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=20");
+    const response = await fetch(
+      `https://pokeapi.co/api/v2/pokemon?language=${selectedLanguage}`
+    );
     const dataPokemon = await response.json();
     const pokemonList = dataPokemon.results;
 
-    // Fetch detailed information for each Pokémon
     const pokemonDetails = await Promise.all(
       pokemonList.map((pokemon) => fetch(pokemon.url))
     );
 
-    // Convert each fetched response to JSON (Pokemon details)
     const pokemonData = await Promise.all(
       pokemonDetails.map((response) => response.json())
     );
@@ -18,70 +17,81 @@ async function fetchPokemons() {
     return pokemonData;
   } catch (error) {
     console.error("There was an error fetching the Pokémon data:", error);
-    return []; // Return an empty array in case of error
+    return [];
   }
 }
 
 async function renderData() {
-  const pokecardContainer = document.querySelector("#pokemonCards"); // Make sure this exists in your HTML
-  const pokemonData = await fetchPokemons(); // Fetch Pokémon data
+  const pokecardContainer = document.querySelector("#pokemonCards");
+  const pokemonData = await fetchPokemons();
 
   if (!pokemonData || pokemonData.length === 0) {
     pokecardContainer.innerHTML = "<p>No Pokémon found!</p>";
     return;
   }
 
-  // Clear any previous Pokémon cards (if necessary)
   pokecardContainer.innerHTML = "";
 
-  // Render each Pokémon card
-  pokemonData.forEach((pokemon) => {
+  pokemonData.forEach((pokemon, pokemonData) => {
     const card = document.createElement("div");
     card.classList.add("card");
 
-    // Pokémon Name (Title)
+    const image = document.createElement("img");
+    image.src = pokemon.sprites.other["official-artwork"].front_default;
+
     const title = document.createElement("h2");
-    title.textContent = pokemon.name;
+    title.textContent =
+      pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
 
-    // Pokémon Types
+    const info = document.createElement("p");
+    info.textContent = pokemon.id;
+
+    const height = document.createElement("p");
+    height.textContent = `Height: ${pokemon.height}`;
+
+    const weight = document.createElement("p");
+    weight.textContent = `Weight: ${pokemon.weight.maximum}kg`;
+
     const body = document.createElement("p");
-    body.textContent = `Types: ${pokemon.types
-      .map((type) => type.type.name)
-      .join(", ")}`;
+    body.textContent = pokemon.types
+      .map(
+        (type) =>
+          type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)
+      )
+      .join(", ");
 
-    // Abilities List
     const abilitiesList = document.createElement("ul");
     pokemon.abilities.forEach((ability) => {
       const abilityListItem = document.createElement("li");
-      abilityListItem.textContent = ability.ability.name;
+      abilityListItem.textContent =
+        ability.ability.name.charAt(0).toUpperCase() +
+        ability.ability.name.slice(1);
       abilitiesList.appendChild(abilityListItem);
     });
-
-    // Append name, types, and abilities to the card
+    card.appendChild(image);
+    card.appendChild(info);
     card.appendChild(title);
+    card.appendChild(height);
+    card.appendChild(weight);
     card.appendChild(body);
     card.appendChild(abilitiesList);
 
-    // Append the card to the container
     pokecardContainer.appendChild(card);
   });
 }
 
-// Call renderData to load Pokémon cards when the page is loaded
 document.addEventListener("DOMContentLoaded", () => {
   renderData();
 });
 
 let selectedLanguage = "en";
 
-// Change the language when the user selects a different language
 function changeLanguage() {
   const languageSelector = document.getElementById("languageSelector");
   selectedLanguage = languageSelector.value;
-  getPokemon(); // Refetch the Pokémon data with the selected language
+  getPokemon();
 }
 
-// Event listener to detect language change
 document
   .getElementById("languageSelector")
   .addEventListener("change", changeLanguage);
@@ -89,7 +99,6 @@ document
 const pokemonCardsContainer = document.getElementById("pokemonCards");
 const pokemonSearchInput = document.getElementById("pokemonSearch");
 
-// Fetch Pokémon data based on user search and display it
 async function getPokemon() {
   const searchQuery = pokemonSearchInput.value.toLowerCase().trim();
   const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${searchQuery}`;
@@ -101,7 +110,6 @@ async function getPokemon() {
 
     const pokemonData = await pokemonResponse.json();
 
-    // Clear previous search results
     pokemonCardsContainer.innerHTML = "";
 
     displayPokemonCard(pokemonData);
@@ -111,18 +119,26 @@ async function getPokemon() {
   }
 }
 
-// Display a Pokémon card with basic info
 function displayPokemonCard(pokemonData) {
   const pokemonCard = document.createElement("div");
   pokemonCard.classList.add("pokemon-card");
 
   pokemonCard.innerHTML = `
-        <img src="${pokemonData.sprites.other["official-artwork"].front_default}" alt="${pokemonData.name}">
-        <h2>${pokemonData.name}</h2>
+        <div><img src="${
+          pokemonData.sprites.other["official-artwork"].front_default
+        }" alt="${pokemonData.name}">
+        <h2>${
+          pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1)
+        }</h2>
         <p>ID: ${pokemonData.id}</p>
+        <p>Height: ${pokemonData.height}</p>
+        <p>Weight: ${pokemonData.weight}</p>
+        </div>
         <div class="pokemon-abilities">
             <h3>Abilities:</h3>
             <ul id="abilities-${pokemonData.id}"></ul>
+            <h3>Types:</h3>
+            <ul id ="types-${pokemonData.types}"></ul>
         </div>
         <div class="pokemon-encounters">
             <h3>Encounters:</h3>
@@ -131,14 +147,11 @@ function displayPokemonCard(pokemonData) {
     `;
   pokemonCardsContainer.appendChild(pokemonCard);
 
-  // Fetch and display abilities
   displayAbilities(pokemonData);
 
-  // Fetch and display encounters
   displayEncounters(pokemonData.id);
 }
 
-// Fetch and display abilities for a Pokémon
 async function displayAbilities(pokemonData) {
   const abilitiesContainer = document.getElementById(
     `abilities-${pokemonData.id}`
@@ -154,9 +167,12 @@ async function displayAbilities(pokemonData) {
       );
 
       const abilityItem = document.createElement("li");
-      abilityItem.textContent = `${abilityData.name}: ${
+      abilityItem.textContent = `${
+        abilityData.name.charAt(0).toUpperCase() + abilityData.name.slice(1)
+      }: ${
         effectEntry
-          ? effectEntry.short_effect
+          ? effectEntry.short_effect.charAt(0).toUpperCase() +
+            effectEntry.short_effect.slice(1)
           : "No description available in selected language"
       }`;
       abilitiesContainer.appendChild(abilityItem);
@@ -166,7 +182,6 @@ async function displayAbilities(pokemonData) {
   });
 }
 
-// Fetch and display encounter locations for a Pokémon
 async function displayEncounters(pokemonId) {
   try {
     const encountersUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonId}/encounters`;
@@ -178,10 +193,9 @@ async function displayEncounters(pokemonId) {
     );
     encountersData.forEach((encounter) => {
       const locationItem = document.createElement("li");
-      locationItem.textContent = encounter.location_area.name.replace(
-        /-/g,
-        " "
-      );
+      locationItem.textContent =
+        encounter.location_area.name.charAt(0).toUpperCase() +
+        encounter.location_area.name.slice(1).replace(/-/g, " ");
       encountersContainer.appendChild(locationItem);
     });
   } catch (error) {

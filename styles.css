@@ -7,20 +7,22 @@ body {
   min-height: 100vh;
 }
 .menu {
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(246, 231, 242);
   height: 150px;
   padding-left: 50px;
   padding-top: 30px;
   display: flex;
   gap: 50px;
+  width: 100%;
 }
 .pokedex {
   height: 70%;
   width: 70%;
+  padding-bottom: 20px;
 }
 .container {
   background-color: white;
-  max-width: 100%;
+  width: 100%;
   height: auto;
   margin: 0 auto;
   align-items: center;
@@ -39,7 +41,7 @@ a:before {
   position: absolute;
   bottom: 0;
   height: 5px;
-  width: 300px;
+  width: 100%;
   background: linear-gradient(
     to right,
     #fd004c,
@@ -58,43 +60,71 @@ a:hover::before {
 }
 
 .Footer {
-  background-color: rgb(253, 244, 235);
+  background-color: rgb(246, 231, 242);
+
   height: 300px;
   width: 100%;
-  margin: 0 auto;
+  margin: 0;
   clear: both;
   position: relative;
   bottom: 0;
 }
 
 .card {
-  background-color: #ffffff;
-  border: 1px solid #000000;
+  background-color: #fbfbfb;
+  border: 1px solid #c6c6c6;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 20px;
   margin: 20px;
   width: 200px;
+  display: grid;
+  height: min-content;
 }
-
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease-in-out;
+}
+.card img {
+  width: 80%;
+  height: 80%;
+  align-self: center;
+  justify-self: center;
+}
 .card h2 {
+  font-family: "Kaushan Script", cursive;
+  font-weight: 400;
+  font-style: normal;
   font-weight: bold;
   margin-top: 0;
+  justify-self: center;
 }
 
 .card p {
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
   font-size: 16px;
+  justify-self: center;
   color: #666;
 }
 
 .card ul {
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
   list-style: none;
+  justify-self: center;
   padding: 0;
   margin: 0;
 }
 
 .card li {
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
+  margin: 5px;
+  background-color: #c6c6c6;
 }
 
 .card li:last-child {
@@ -102,6 +132,9 @@ a:hover::before {
 }
 
 h1 {
+  font-family: "Kaushan Script", cursive;
+  font-weight: 400;
+  font-style: normal;
   color: #333;
 }
 
@@ -127,11 +160,16 @@ h1 {
 }
 
 .pokemon-card h2 {
+  font-family: "Kaushan Script", cursive;
+  font-weight: 400;
+  font-style: normal;
   font-size: 1.5em;
   color: #333;
 }
 
 .pokemon-card p {
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
   font-size: 1em;
   color: #777;
 }
@@ -144,6 +182,9 @@ h1 {
 
 .pokemon-abilities h3,
 .pokemon-encounters h3 {
+  font-family: "Kaushan Script", cursive;
+  font-weight: 400;
+  font-style: normal;
   margin: 10px 0 5px;
 }
 
