@@ -32,19 +32,24 @@
         </div>
       </div>
 
-      <div class="home"><i id="start" class="fa-solid fa-house"></i></div>
       <div class="menucontent">
-        <input
-          type="text"
-          id="pokemonSearch"
-          placeholder="Search Pokémon by name or ID..."
-        />
-        <button onclick="getPokemon()">Search</button>
+        <input type="text" id="pokemonSearch" placeholder=" Name or ID..." />
+        <button
+          id="searchbtn"
+          class="buttons"
+          onclick="getPokemon()"
+          style="
+            background-color: rgb(255, 134, 134);
+            border-color: rgb(148, 2, 2);
+          "
+        >
+          Search
+        </button>
       </div>
       <div class="menucontent">
         <select id="languageSelector" onchange="changeLanguage()">
-          <option value="en" selected>English</option>
-          <option value="de">German</option>
+          <option class="buttons" value="en" selected>English</option>
+          <option class="buttons" value="de">German</option>
         </select>
       </div>
     </div>

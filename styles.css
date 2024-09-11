@@ -14,28 +14,21 @@ body {
   display: flex;
   gap: 15px;
   width: 100%;
-}
-.title {
-  width: 300px;
-  padding-right: 500px;
+  .title {
+    width: 300px;
+    padding-right: 700px;
+  }
+  .menucontent {
+    align-self: last baseline;
+    margin-bottom: 50px;
+    .buttons {
+      font-family: "Kaushan Script", cursive;
+      font-weight: 400;
+      font-style: normal;
+    }
+  }
 }
 
-.home {
-  border-color: #333;
-  border-width: 1px;
-  border-radius: 100%;
-  height: 20%;
-  width: 2%;
-  align-self: last baseline;
-  margin-bottom: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.menucontent {
-  align-self: last baseline;
-  margin-bottom: 50px;
-}
 .pokedex {
   height: 70%;
   width: 70%;

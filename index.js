@@ -152,8 +152,6 @@ function displayPokemonCard(pokemonData) {
         <div class="pokemon-abilities">
             <h3>Abilities:</h3>
             <ul id="abilities-${pokemonData.id}"></ul>
-            <h3>Types:</h3>
-            <ul id ="types-${pokemonData.types}"></ul>
         </div>
         <div class="pokemon-encounters">
             <h3>Encounters:</h3>
