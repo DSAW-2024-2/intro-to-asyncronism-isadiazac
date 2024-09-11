@@ -34,6 +34,54 @@ body {
   width: 70%;
   padding-bottom: 20px;
 }
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 65px;
+  aspect-ratio: 1;
+  position: relative;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  border-radius: 50px;
+  box-shadow: 0 0 0 3px inset #fff;
+  animation: l4 2.5s infinite;
+}
+.loader:after {
+  animation-delay: -1.25s;
+}
+@keyframes l4 {
+  0% {
+    inset: 0 35px 35px 0;
+  }
+  12.5% {
+    inset: 0 35px 0 0;
+  }
+  25% {
+    inset: 35px 35px 0 0;
+  }
+  37.5% {
+    inset: 35px 0 0 0;
+  }
+  50% {
+    inset: 35px 0 0 35px;
+  }
+  62.5% {
+    inset: 0 0 0 35px;
+  }
+  75% {
+    inset: 0 0 35px 35px;
+  }
+  87.5% {
+    inset: 0 0 35px 0;
+  }
+  100% {
+    inset: 0 35px 35px 0;
+  }
+}
+
 .container {
   background-image: url("./Background.png");
   width: 100%;
@@ -100,7 +148,7 @@ a:hover::before {
 }
 
 .type-button {
-  background-color: #fff;
+  background-color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -110,7 +158,66 @@ a:hover::before {
 }
 
 .type-button:hover {
-  background-color: #f0f0f0;
+  background-color: var(--type-color);
+}
+.type-button.dark:hover,
+.type-button.steel:hover {
+  color: white;
+}
+
+.type-button.fire {
+  --type-color: #fab3b3;
+}
+
+.type-button.water {
+  --type-color: #b0f9f9;
+}
+
+.type-button.grass {
+  --type-color: #c4f7c4;
+}
+
+.type-button.ice {
+  --type-color: #c6e2fa;
+}
+.type-button.electric {
+  --type-color: #d0b7fa;
+}
+.type-button.fighting {
+  --type-color: #ffe7cf;
+}
+.type-button.poison {
+  --type-color: #f2cefb;
+}
+.type-button.ground {
+  --type-color: #f2f7c9;
+}
+.type-button.flying {
+  --type-color: #b1f2fb;
+}
+.type-button.psychic {
+  --type-color: #fcb1e6;
+}
+.type-button.bug {
+  --type-color: #f4fbb0;
+}
+.type-button.rock {
+  --type-color: #c4c4c4;
+}
+.type-button.ghost {
+  --type-color: #ebf5fc;
+}
+.type-button.steel {
+  --type-color: #808080;
+}
+.type-button.dragon {
+  --type-color: #eabdfc;
+}
+.type-button.dark {
+  --type-color: #2e2e2e;
+}
+.type-button.fairy {
+  --type-color: #fa95bf;
 }
 
 .card {
