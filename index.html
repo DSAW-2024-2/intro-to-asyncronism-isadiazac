@@ -33,21 +33,34 @@
       </div>
 
       <div class="menucontent">
-        <input type="text" id="pokemonSearch" placeholder=" Name or ID..." />
+        <input
+          type="text"
+          id="pokemonSearch"
+          placeholder=" Name or ID..."
+          style="height: 30px"
+        />
         <button
           id="searchbtn"
           class="buttons"
           onclick="getPokemon()"
           style="
+            padding: 3px;
+            margin: 5px;
             background-color: rgb(255, 134, 134);
             border-color: rgb(148, 2, 2);
+            color: white;
+            border-radius: 10%;
           "
         >
           Search
         </button>
       </div>
       <div class="menucontent">
-        <select id="languageSelector" onchange="changeLanguage()">
+        <select
+          id="languageSelector"
+          onchange="changeLanguage()"
+          style="height: 30px"
+        >
           <option class="buttons" value="en" selected>English</option>
           <option class="buttons" value="de">German</option>
         </select>
@@ -59,7 +72,7 @@
         <div id="pokemonCards" class="card-container"></div>
       </div>
     </main>
-    <footer class="Footer"></footer>
+    <footer></footer>
     <script src="index.js"></script>
   </body>
 </html>

@@ -59,7 +59,7 @@ async function renderData() {
       pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
 
     const info = document.createElement("p");
-    info.textContent = pokemon.id;
+    info.textContent = `#${pokemon.id}`;
 
     const height = document.createElement("p");
     height.textContent = `Height: ${pokemon.height}`;
@@ -92,6 +92,14 @@ async function renderData() {
     card.appendChild(abilitiesList);
 
     pokecardContainer.appendChild(card);
+  });
+  const infocard = document.querySelectorAll(".card");
+  infocard.forEach((card) => {
+    card.addEventListener("click", (event) => {
+      const pokemonName = card.querySelector("h2").textContent;
+      console.log(pokemonName);
+      getPokemon(pokemonName);
+    });
   });
 }
 
@@ -139,7 +147,7 @@ function displayPokemonCard(pokemonData) {
   pokemonCard.classList.add("pokemon-card");
 
   pokemonCard.innerHTML = `
-        <div><img src="${
+        <div class="maininfo"><img src="${
           pokemonData.sprites.other["official-artwork"].front_default
         }" alt="${pokemonData.name}">
         <h2>${
@@ -204,13 +212,26 @@ async function displayEncounters(pokemonId) {
     const encountersContainer = document.getElementById(
       `encounters-${pokemonId}`
     );
+
+    encountersContainer.innerHTML = "";
+
+    if (encountersData.length === 0) {
+      encountersContainer.innerHTML = `<p>No known encounters.</p>`;
+      return;
+    }
+    const encounterList = document.createElement("div");
+    encounterList.classList.add("encounter-list");
+
     encountersData.forEach((encounter) => {
-      const locationItem = document.createElement("li");
+      const locationItem = document.createElement("span");
+      locationItem.classList.add("location-badge");
       locationItem.textContent =
         encounter.location_area.name.charAt(0).toUpperCase() +
         encounter.location_area.name.slice(1).replace(/-/g, " ");
-      encountersContainer.appendChild(locationItem);
+      encounterList.appendChild(locationItem);
     });
+
+    encountersContainer.appendChild(encounterList);
   } catch (error) {
     console.error("Error fetching encounter data:", error);
   }

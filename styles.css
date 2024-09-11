@@ -17,7 +17,7 @@ body {
 }
 .title {
   width: 300px;
-  padding-right: 700px;
+  padding-right: 500px;
 }
 .menucontent {
   align-self: last baseline;
@@ -35,7 +35,6 @@ body {
   padding-bottom: 20px;
 }
 
-/* HTML: <div class="loader"></div> */
 .loader {
   width: 65px;
   aspect-ratio: 1;
@@ -136,12 +135,13 @@ a:hover::before {
   background-position: 100% 0;
 }
 
-.Footer {
-  background-color: rgb(246, 231, 242);
+footer {
+  background-color: rgb(255, 255, 255);
 
   height: 300px;
   width: 100%;
   margin: 0;
+  padding-right: 50px;
   clear: both;
   position: relative;
   bottom: 0;
@@ -149,9 +149,13 @@ a:hover::before {
 
 .type-button {
   background-color: white;
+  color: #000000;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
   font-size: 16px;
   margin: 10px;
   padding: 10px 20px;
@@ -161,7 +165,8 @@ a:hover::before {
   background-color: var(--type-color);
 }
 .type-button.dark:hover,
-.type-button.steel:hover {
+.type-button.steel:hover,
+.type-button.rock:hover {
   color: white;
 }
 
@@ -190,7 +195,7 @@ a:hover::before {
   --type-color: #f2cefb;
 }
 .type-button.ground {
-  --type-color: #f2f7c9;
+  --type-color: #fcd8ad;
 }
 .type-button.flying {
   --type-color: #b1f2fb;
@@ -238,13 +243,6 @@ a:hover::before {
   border: 1px solid #ccc;
   transition: all 0.3s ease-in-out;
 }
-.card[data-type="Fire"] {
-  background-color: #ff9999;
-}
-
-.card[data-type="Water"] {
-  background-color: #66cccc;
-}
 .card img {
   width: 80%;
   height: 80%;
@@ -280,15 +278,20 @@ a:hover::before {
 }
 
 .card li {
+  text-justify: center;
   margin: 5px;
-  background-color: #c6c6c6;
+  padding: 5px;
+  border-radius: 10%;
+  color: white;
+  background-color: #000000;
 }
 
 .card li:last-child {
   border-bottom: none;
 }
 
-h1 {
+h1,
+h3 {
   font-family: "Kaushan Script", cursive;
   font-weight: 400;
   font-style: normal;
@@ -299,15 +302,29 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
 }
 
 .pokemon-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
   background-color: white;
   border-radius: 10px;
+  max-width: 50%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   text-align: center;
+}
+.maininfo {
+  border: solid #000000;
+  border-radius: 10%;
+  width: 223px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+  margin-left: 5%;
 }
 
 .pokemon-card img {
@@ -330,33 +347,83 @@ h1 {
   color: #777;
 }
 
-.pokemon-abilities,
-.pokemon-encounters {
+.pokemon-abilities {
+  max-width: 50%;
   margin-top: 10px;
+  margin-left: 15px;
   text-align: left;
+  border-bottom: solid;
 }
 
-.pokemon-abilities h3,
-.pokemon-encounters h3 {
+.pokemon-abilities h3 {
   font-family: "Kaushan Script", cursive;
   font-weight: 400;
   font-style: normal;
   margin: 10px 0 5px;
 }
 
-.pokemon-abilities ul,
-.pokemon-encounters ul {
+.pokemon-abilities ul {
   list-style-type: none;
   padding-left: 0;
 }
 
-.pokemon-abilities li,
-.pokemon-encounters li {
+.pokemon-abilities li {
   margin-bottom: 5px;
 }
 
+.encounter-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 100;
+  gap: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.location-badge {
+  background-color: #e3e3e3;
+  color: black;
+  padding: 6px 10px;
+  border-radius: 15px;
+  font-size: 0.85em;
+  font-weight: bold;
+  display: inline-block;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.location-badge:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
 @media screen and (max-width: 768px) {
+  #pokemonCards {
+    display: block;
+    margin: 0;
+  }
+  .menu {
+    flex-wrap: wrap;
+    justify-items: center;
+    padding-bottom: 20px;
+  }
+
+  footer {
+    max-width: 100%;
+  }
   .title {
     padding-right: 0;
+    gap: 0;
+  }
+  .pokemon-card {
+    max-width: 90%;
+  }
+  .pokemon-abilities h3 {
+    text-align: center;
   }
 }
