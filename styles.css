@@ -14,19 +14,19 @@ body {
   display: flex;
   gap: 15px;
   width: 100%;
-  .title {
-    width: 300px;
-    padding-right: 700px;
-  }
-  .menucontent {
-    align-self: last baseline;
-    margin-bottom: 50px;
-    .buttons {
-      font-family: "Kaushan Script", cursive;
-      font-weight: 400;
-      font-style: normal;
-    }
-  }
+}
+.title {
+  width: 300px;
+  padding-right: 700px;
+}
+.menucontent {
+  align-self: last baseline;
+  margin-bottom: 50px;
+}
+.buttons {
+  font-family: "Kaushan Script", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .pokedex {
