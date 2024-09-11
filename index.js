@@ -217,5 +217,44 @@ async function displayEncounters(pokemonId) {
     console.error("Error fetching encounter data:", error);
   }
 }
-let btncard;
-btncard.addEventListener("click", () => {});
+
+const pokemonTypes = [
+  "Fire",
+  "Water",
+  "Grass",
+  "Ice",
+  "Electric",
+  "Fighting",
+  "Poison",
+  "Ground",
+  "Flying",
+  "Psychic",
+  "Bug",
+  "Rock",
+  "Ghost",
+  "Steel",
+  "Dragon",
+  "Dark",
+  "Fairy",
+];
+const typeButtonsContainer = document.createElement("div");
+typeButtonsContainer.className = "type-buttons";
+
+pokemonTypes.forEach((type) => {
+  const button = document.createElement("button");
+  button.textContent = type;
+  button.className = `type-button ${type.toLowerCase()}`;
+  button.addEventListener("click", () => {
+    TypeCards(type);
+  });
+  typeButtonsContainer.appendChild(button);
+});
+
+document.querySelector("main").appendChild(typeButtonsContainer);
+
+function TypeCards(type) {
+  const cards = document.querySelectorAll(`.card[data-type="${type}"]`);
+  cards.forEach((card) => {
+    card.style.display = card.style.display === "none" ? "block" : "none";
+  });
+}

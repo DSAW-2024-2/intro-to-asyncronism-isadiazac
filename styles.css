@@ -17,9 +17,25 @@ body {
 }
 .title {
   width: 300px;
-  padding-right: 20px;
+  padding-right: 500px;
 }
 
+.home {
+  border-color: #333;
+  border-width: 1px;
+  border-radius: 100%;
+  height: 20%;
+  width: 2%;
+  align-self: last baseline;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menucontent {
+  align-self: last baseline;
+  margin-bottom: 50px;
+}
 .pokedex {
   height: 70%;
   width: 70%;
@@ -31,13 +47,24 @@ body {
   height: auto;
   margin: 0 auto;
   align-items: center;
-  justify-content: center;
-  overflow: auto;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column-reverse;
   justify-content: center;
   padding: 20px;
 }
+
+.type-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.pokemoncontent {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .bg {
   width: 100%;
   height: 100%;
@@ -79,6 +106,20 @@ a:hover::before {
   bottom: 0;
 }
 
+.type-button {
+  background-color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px;
+  padding: 10px 20px;
+}
+
+.type-button:hover {
+  background-color: #f0f0f0;
+}
+
 .card {
   background-color: #fbfbfb;
   border: 1px solid #c6c6c6;
@@ -96,6 +137,13 @@ a:hover::before {
   background-color: #f7f7f7;
   border: 1px solid #ccc;
   transition: all 0.3s ease-in-out;
+}
+.card[data-type="Fire"] {
+  background-color: #ff9999;
+}
+
+.card[data-type="Water"] {
+  background-color: #66cccc;
 }
 .card img {
   width: 80%;
@@ -207,5 +255,8 @@ h1 {
   margin-bottom: 5px;
 }
 
-.home {
+@media screen and (max-width: 768px) {
+  .title {
+    padding-right: 0;
+  }
 }

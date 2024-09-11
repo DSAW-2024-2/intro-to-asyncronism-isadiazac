@@ -31,13 +31,9 @@
           /></a>
         </div>
       </div>
-      <div>
-        <select id="languageSelector" onchange="changeLanguage()">
-          <option value="en" selected>English</option>
-          <option value="de">German</option>
-        </select>
-      </div>
-      <div>
+
+      <div class="home"><i id="start" class="fa-solid fa-house"></i></div>
+      <div class="menucontent">
         <input
           type="text"
           id="pokemonSearch"
@@ -45,10 +41,18 @@
         />
         <button onclick="getPokemon()">Search</button>
       </div>
-      <div class="home"><i id="start" class="fa-solid fa-house"></i></div>
+      <div class="menucontent">
+        <select id="languageSelector" onchange="changeLanguage()">
+          <option value="en" selected>English</option>
+          <option value="de">German</option>
+        </select>
+      </div>
     </div>
     <main class="container">
-      <div id="pokemonCards" class="card-container"></div>
+      <div class="type-buttons"></div>
+      <div class="pokemoncontent">
+        <div id="pokemonCards" class="card-container"></div>
+      </div>
     </main>
     <footer class="Footer"></footer>
     <script src="index.js"></script>
