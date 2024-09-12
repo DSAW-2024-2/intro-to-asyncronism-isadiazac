@@ -99,6 +99,7 @@ async function renderData(type) {
       pokecardContainer.appendChild(card);
     }
   });
+  hideLoader();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -278,4 +279,9 @@ pokemonTypes.forEach((type) => {
 
 function clean() {
   document.querySelector("#pokemonCards").innerHTML = "";
+}
+
+function hideLoader() {
+  const loader = document.querySelector(".loader");
+  loader.classList.add("loader-hidden");
 }

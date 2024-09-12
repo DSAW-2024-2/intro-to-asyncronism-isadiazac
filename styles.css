@@ -82,6 +82,10 @@ body {
   }
 }
 
+.loader-hidden {
+  display: none;
+}
+
 .container {
   width: 100%;
   height: auto;
