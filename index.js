@@ -46,10 +46,8 @@ async function renderData(type) {
     return;
   }
 
-  pokecardContainer.innerHTML = "";
-
   pokemonData.forEach((pokemon) => {
-    if (pokemon.types[0].type.name === type) {
+    if (pokemon.types[0].type.name === type.toLowerCase()) {
       const card = document.createElement("div");
       card.classList.add("card");
 
@@ -104,7 +102,7 @@ async function renderData(type) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  renderData("fire");
+  renderData("Fire");
 });
 
 let selectedLanguage = "en";
@@ -271,9 +269,13 @@ pokemonTypes.forEach((type) => {
   button.textContent = type;
   button.className = `type-button ${type.toLowerCase()}`;
   button.addEventListener("click", () => {
-    console.log(type);
-    //renderData(type);
+    clean();
+    renderData(type);
   });
 
   typeButtonsContainer.appendChild(button);
 });
+
+function clean() {
+  document.querySelector("#pokemonCards").innerHTML = "";
+}
