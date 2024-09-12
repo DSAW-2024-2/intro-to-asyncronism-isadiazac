@@ -3,7 +3,7 @@
   padding: 0;
 }
 body {
-  background-color: rgb(235, 235, 235);
+  background-image: url("./Background.png");
   min-height: 100vh;
 }
 .menu {
@@ -34,55 +34,55 @@ body {
   width: 70%;
   padding-bottom: 20px;
 }
+#searchbtn {
+  padding: 3px;
+  margin: 5px;
+  background-color: rgb(255, 134, 134);
+  border-color: rgb(148, 2, 2);
+  color: white;
+  border-radius: 10%;
+}
+#pokemonSearch,
+#languageSelector {
+  height: 30px;
+}
 
 .loader {
-  width: 65px;
-  aspect-ratio: 1;
-  position: relative;
+  width: 100px;
+  height: 40px;
+  --g: radial-gradient(
+      farthest-side,
+      #ffffff calc(95% - 3px),
+      #ffffff calc(100% - 3px) 98%,
+      #ffffff 101%
+    )
+    no-repeat;
+  background: var(--g), var(--g), var(--g);
+  background-size: 30px 30px;
+  animation: l9 1s infinite alternate;
 }
-.loader:before,
-.loader:after {
-  content: "";
-  position: absolute;
-  border-radius: 50px;
-  box-shadow: 0 0 0 3px inset #fff;
-  animation: l4 2.5s infinite;
-}
-.loader:after {
-  animation-delay: -1.25s;
-}
-@keyframes l4 {
+@keyframes l9 {
   0% {
-    inset: 0 35px 35px 0;
+    background-position: 0 50%, 50% 50%, 100% 50%;
   }
-  12.5% {
-    inset: 0 35px 0 0;
+  20% {
+    background-position: 0 0, 50% 50%, 100% 50%;
   }
-  25% {
-    inset: 35px 35px 0 0;
+  40% {
+    background-position: 0 100%, 50% 0, 100% 50%;
   }
-  37.5% {
-    inset: 35px 0 0 0;
+  60% {
+    background-position: 0 50%, 50% 100%, 100% 0;
   }
-  50% {
-    inset: 35px 0 0 35px;
-  }
-  62.5% {
-    inset: 0 0 0 35px;
-  }
-  75% {
-    inset: 0 0 35px 35px;
-  }
-  87.5% {
-    inset: 0 0 35px 0;
+  80% {
+    background-position: 0 50%, 50% 50%, 100% 100%;
   }
   100% {
-    inset: 0 35px 35px 0;
+    background-position: 0 50%, 50% 50%, 100% 50%;
   }
 }
 
 .container {
-  background-image: url("./Background.png");
   width: 100%;
   height: auto;
   margin: 0 auto;
@@ -161,12 +161,26 @@ footer {
   padding: 10px 20px;
 }
 
+.type-button:focus {
+  background-color: var(--type-color);
+}
+
+.type-button:active {
+  background-color: var(--type-color);
+}
+
 .type-button:hover {
   background-color: var(--type-color);
 }
 .type-button.dark:hover,
 .type-button.steel:hover,
-.type-button.rock:hover {
+.type-button.rock:hover,
+.type-button.dark:active,
+.type-button.steel:active,
+.type-button.rock:active,
+.type-button.dark:focus,
+.type-button.steel:focus,
+.type-button.rock:focus {
   color: white;
 }
 
@@ -283,7 +297,7 @@ footer {
   padding: 5px;
   border-radius: 10%;
   color: white;
-  background-color: #000000;
+  background-color: #5d9361;
 }
 
 .card li:last-child {

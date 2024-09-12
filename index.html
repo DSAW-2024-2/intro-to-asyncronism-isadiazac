@@ -39,19 +39,7 @@
           placeholder=" Name or ID..."
           style="height: 30px"
         />
-        <button
-          id="searchbtn"
-          class="buttons"
-          onclick="getPokemon()"
-          style="
-            padding: 3px;
-            margin: 5px;
-            background-color: rgb(255, 134, 134);
-            border-color: rgb(148, 2, 2);
-            color: white;
-            border-radius: 10%;
-          "
-        >
+        <button id="searchbtn" class="buttons" onclick="getPokemon()" ;>
           Search
         </button>
       </div>
@@ -67,12 +55,12 @@
       </div>
     </div>
     <main class="container">
+      <div class="loader"></div>
       <div class="type-buttons"></div>
       <div class="pokemoncontent">
         <div id="pokemonCards" class="card-container"></div>
       </div>
     </main>
-    <footer></footer>
     <script src="index.js"></script>
   </body>
 </html>
