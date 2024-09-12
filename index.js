@@ -97,9 +97,9 @@ async function renderData(type) {
       });
 
       pokecardContainer.appendChild(card);
+      hideLoader();
     }
   });
-  hideLoader();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -279,9 +279,14 @@ pokemonTypes.forEach((type) => {
 
 function clean() {
   document.querySelector("#pokemonCards").innerHTML = "";
+  showLoader();
 }
 
 function hideLoader() {
-  const loader = document.querySelector(".loader");
-  loader.classList.add("loader-hidden");
+  const loaderhid = document.querySelector(".loader");
+  loaderhid.classList.add("loader-hidden");
+}
+function showLoader() {
+  const loadershown = document.querySelector(".loader");
+  loadershown.classList.add("loader-shown");
 }

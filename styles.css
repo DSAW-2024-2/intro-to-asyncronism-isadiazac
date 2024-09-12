@@ -85,6 +85,9 @@ body {
 .loader-hidden {
   display: none;
 }
+.loader-shown {
+  display: block;
+}
 
 .container {
   width: 100%;
