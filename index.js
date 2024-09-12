@@ -1,3 +1,4 @@
+//Esta parte trae la información de los pokemones
 async function fetchPokemons() {
   try {
     const url = `https://pokeapi.co/api/v2/pokemon?language=${selectedLanguage}`;
@@ -36,7 +37,7 @@ async function fetchUrl(url) {
   return response.json();
 }
 
-async function renderData() {
+async function renderData(type) {
   const pokecardContainer = document.querySelector("#pokemonCards");
   const pokemonData = await fetchPokemons();
 
@@ -47,64 +48,63 @@ async function renderData() {
 
   pokecardContainer.innerHTML = "";
 
-  pokemonData.forEach((pokemon, pokemonData) => {
-    const card = document.createElement("div");
-    card.classList.add("card");
+  pokemonData.forEach((pokemon) => {
+    if (pokemon.types[0].type.name === type) {
+      const card = document.createElement("div");
+      card.classList.add("card");
 
-    const image = document.createElement("img");
-    image.src = pokemon.sprites.other["official-artwork"].front_default;
+      const image = document.createElement("img");
+      image.src = pokemon.sprites.other["official-artwork"].front_default;
 
-    const title = document.createElement("h2");
-    title.textContent =
-      pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+      const title = document.createElement("h2");
+      title.textContent =
+        pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
 
-    const info = document.createElement("p");
-    info.textContent = `#${pokemon.id}`;
+      const info = document.createElement("p");
+      info.textContent = `#${pokemon.id}`;
 
-    const height = document.createElement("p");
-    height.textContent = `Height: ${pokemon.height}`;
+      const height = document.createElement("p");
+      height.textContent = `Height: ${pokemon.height}`;
 
-    const weight = document.createElement("p");
-    weight.textContent = `Weight: ${pokemon.weight.maximum}kg`;
+      const weight = document.createElement("p");
+      weight.textContent = `Weight: ${pokemon.weight.maximum}kg`;
 
-    const body = document.createElement("p");
-    body.textContent = pokemon.types
-      .map(
-        (type) =>
-          type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)
-      )
-      .join(", ");
+      const body = document.createElement("p");
+      body.textContent = pokemon.types
+        .map(
+          (type) =>
+            type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)
+        )
+        .join(", ");
 
-    const abilitiesList = document.createElement("ul");
-    pokemon.abilities.forEach((ability) => {
-      const abilityListItem = document.createElement("li");
-      abilityListItem.textContent =
-        ability.ability.name.charAt(0).toUpperCase() +
-        ability.ability.name.slice(1);
-      abilitiesList.appendChild(abilityListItem);
-    });
-    card.appendChild(image);
-    card.appendChild(info);
-    card.appendChild(title);
-    card.appendChild(height);
-    card.appendChild(weight);
-    card.appendChild(body);
-    card.appendChild(abilitiesList);
+      const abilitiesList = document.createElement("ul");
+      pokemon.abilities.forEach((ability) => {
+        const abilityListItem = document.createElement("li");
+        abilityListItem.textContent =
+          ability.ability.name.charAt(0).toUpperCase() +
+          ability.ability.name.slice(1);
+        abilitiesList.appendChild(abilityListItem);
+      });
+      card.appendChild(image);
+      card.appendChild(info);
+      card.appendChild(title);
+      card.appendChild(height);
+      card.appendChild(weight);
+      card.appendChild(body);
+      card.appendChild(abilitiesList);
+      card.addEventListener("click", (event) => {
+        const pokemonName = card.querySelector("h2").textContent.toLowerCase();
+        console.log(pokemonName);
+        getPokemon(pokemonName);
+      });
 
-    pokecardContainer.appendChild(card);
-  });
-  const infocard = document.querySelectorAll(".card");
-  infocard.forEach((card) => {
-    card.addEventListener("click", (event) => {
-      const pokemonName = card.querySelector("h2").textContent;
-      console.log(pokemonName);
-      getPokemon(pokemonName);
-    });
+      pokecardContainer.appendChild(card);
+    }
   });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  renderData();
+  renderData("fire");
 });
 
 let selectedLanguage = "en";
@@ -122,8 +122,14 @@ document
 const pokemonCardsContainer = document.getElementById("pokemonCards");
 const pokemonSearchInput = document.getElementById("pokemonSearch");
 
-async function getPokemon() {
-  const searchQuery = pokemonSearchInput.value.toLowerCase().trim();
+async function getPokemon(pokemonName) {
+  let searchQuery = "";
+  if (pokemonName === undefined) {
+    searchQuery = pokemonSearchInput.value.toLowerCase().trim();
+  } else {
+    searchQuery = pokemonName;
+  }
+  console.log(pokemonName);
   const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${searchQuery}`;
 
   try {
@@ -258,22 +264,16 @@ const pokemonTypes = [
 ];
 const typeButtonsContainer = document.createElement("div");
 typeButtonsContainer.className = "type-buttons";
+document.querySelector("main").appendChild(typeButtonsContainer);
 
 pokemonTypes.forEach((type) => {
   const button = document.createElement("button");
   button.textContent = type;
   button.className = `type-button ${type.toLowerCase()}`;
   button.addEventListener("click", () => {
-    TypeCards(type);
+    console.log(type);
+    //renderData(type);
   });
+
   typeButtonsContainer.appendChild(button);
 });
-
-document.querySelector("main").appendChild(typeButtonsContainer);
-
-function TypeCards(type) {
-  const cards = document.querySelectorAll(`.card[data-type="${type}"]`);
-  cards.forEach((card) => {
-    card.style.display = card.style.display === "none" ? "block" : "none";
-  });
-}
